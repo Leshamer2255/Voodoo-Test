@@ -1,162 +1,219 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=Space+Grotesk:300,regular,500,600,700" rel="stylesheet" />
 	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-</head>
-<link rel="stylesheet" href="/compiled.css">
-<title>VooDoo TEST</title>
+	<link rel="stylesheet" href="/compiled.css">
+	<link rel="stylesheet" href="/css/cart.css">
+	<title>VooDoo Shop</title>
 </head>
 
 <body>
 	<div class="wrapper">
 		<header class="header">
 			<div class="header__container _container">
-				<a href="" class="header__logo">
-					<img src="/img/Logo.png" alt="Logo" />
+				<a href="/" class="header__logo">
+					<img src="/img/Logo.png" alt="VooDoo Shop Logo" />
 				</a>
-				<div class="header__menu menu">
-					<div class="cart">
-						<aa class="cart-button"></a>
-						<a class="cart-icon" href="#">
-							<img src="/img/shopping-cart.png" alt="Shopping Cart" />
-							<div class="item-count">0</div>
-						</a>
+				<nav class="header__menu menu">
+					<div class="menu__categories">
+						<a href="#" class="menu__link">New Arrivals</a>
+						<a href="#" class="menu__link">Bestsellers</a>
+						<a href="#" class="menu__link">Categories</a>
+						<a href="#" class="menu__link">Sale</a>
 					</div>
-					<div id="cartModal" class="modal">
-						<div class="modal-content">
-							<h2 class="modal__title">Shopping Cart</h2>
-							<ul class="cart-items">
-							</ul>
-							<div>
-								<p class="total-cart-price">TOTAL: $0.00</p>
-							  </div>
+					<div class="menu__actions">
+						<div class="search-box">
+							<input type="text" placeholder="Search products..." class="search-input">
+							<button class="search-button">
+								<img src="/img/search.png" alt="Search" />
+							</button>
 						</div>
-						<a class="close-button">X</a>
-					</div>					
-					<div class="menu__list">
-						<button class="button-singup">Sing-up</button>
+						<div class="cart">
+							<a class="cart-icon" href="#">
+								<img src="/img/shopping-cart.png" alt="Shopping Cart" />
+								<div class="item-count">0</div>
+							</a>
+						</div>
+						<div class="user-actions">
+							<button class="button-login">Login</button>
+							<button class="button-signup">Sign Up</button>
+						</div>
 					</div>
-				</div>
+				</nav>
 			</div>
 		</header>
-		<!-- <main class="page__services services">
-			<div class="services__container _container">
-				<div class="services__body">
-					<div class="services__column">
-						<div class="services__item item-service">
-							<div class="item-service__icon"><img src="/img/product-photo.svg" alt="product-photo"></div>
-							<div class="item-service__text">Product name Condition</div>
-							<div class="item-service__text">000 KR. Slightly used. </div>
-							<button class="button__add">ADD TO CART</button>
-						</div>
-					</div>
-					<div class="services__column">
-						<div class="services__item item-service">
-							<div class="item-service__icon"><img src="/img/product-photo.svg" alt="product-photo"></div>
-							<div class="item-service__text">Product name Condition</div>
-							<div class="item-service__text">000 KR. Slightly used. </div>
-							<button class="button__add">ADD TO CART</button>
-						</div>
-					</div>
-					<div class="services__column">
-						<div class="services__item item-service">
-							<div class="item-service__icon"><img src="/img/product-photo.svg" alt="product-photo"></div>
-							<div class="item-service__text">Product name Condition</div>
-							<div class="item-service__text">000 KR. Slightly used. </div>
-							<button class="button__add">ADD TO CART</button>
-						</div>
-					</div>
-					<div class="services__column">
-						<div class="services__item item-service">
-							<div class="item-service__icon"><img src="/img/product-photo.svg" alt="product-photo"></div>
-							<div class="item-service__text">Product name Condition</div>
-							<div class="item-service__text">000 KR. Slightly used. </div>
-							<button class="button__add">ADD TO CART</button>
-						</div>
-					</div>
+
+		<div id="cartModal" class="modal">
+			<div class="modal-content">
+				<h2 class="modal__title">Shopping Cart</h2>
+				<ul class="cart-items">
+				</ul>
+				<div class="cart-summary">
+					<p class="total-cart-price">TOTAL: $0.00</p>
+					<button class="checkout-button">Proceed to Checkout</button>
 				</div>
 			</div>
-		</main> -->
-		<section class="flex justify-center items-center">
-			<div class="alpha__block">
-				<div class="alpha__image"><img src="/img/alert-circle.png" alt=""></div>
-				<h2 class="alpha__title">ALPHA</h2>
-				<p class="alpha__text">Important info regarding our service</p>
-				<div class="alpha-header">
-					<img src="/img/chevron-down.png" alt="">
+			<a class="close-button">×</a>
+		</div>
+
+		<div id="loginModal" class="modal">
+			<div class="modal-content">
+				<h2 class="modal__title">Login</h2>
+				<form class="login-form">
+					<div class="form-group">
+						<label for="email">Email</label>
+						<input type="email" id="email" name="email" required placeholder="Enter your email">
+					</div>
+					<div class="form-group">
+						<label for="password">Password</label>
+						<input type="password" id="password" name="password" required placeholder="Enter your password">
+					</div>
+					<div class="form-options">
+						<label class="remember-me">
+							<input type="checkbox" name="remember">
+							<span>Remember me</span>
+						</label>
+						<a href="#" class="forgot-password">Forgot password?</a>
+					</div>
+					<button type="submit" class="login-button">Login</button>
+					<div class="form-footer">
+						<p>Don't have an account? <a href="#" class="signup-link">Sign up</a></p>
+					</div>
+				</form>
+			</div>
+			<a class="close-button">×</a>
+		</div>
+
+		<div id="signupModal" class="modal">
+			<div class="modal-content">
+				<h2 class="modal__title">Sign Up</h2>
+				<form class="signup-form">
+					<div class="form-group">
+						<label for="signup-name">Full Name</label>
+						<input type="text" id="signup-name" name="name" required placeholder="Enter your full name">
+					</div>
+					<div class="form-group">
+						<label for="signup-email">Email</label>
+						<input type="email" id="signup-email" name="email" required placeholder="Enter your email">
+					</div>
+					<div class="form-group">
+						<label for="signup-password">Password</label>
+						<input type="password" id="signup-password" name="password" required placeholder="Create a password">
+					</div>
+					<div class="form-group">
+						<label for="signup-confirm-password">Confirm Password</label>
+						<input type="password" id="signup-confirm-password" name="confirm-password" required placeholder="Confirm your password">
+					</div>
+					<button type="submit" class="signup-button">Create Account</button>
+					<div class="form-footer">
+						<p>Already have an account? <a href="#" class="login-link">Login</a></p>
+					</div>
+				</form>
+			</div>
+			<a class="close-button">×</a>
+		</div>
+
+		<main class="main-content">
+			<section class="hero-section">
+				<div class="hero-content">
+					<h1>Welcome to VooDoo Shop</h1>
+					<p>Discover our latest collection</p>
+					<button class="shop-now-button">Shop Now</button>
 				</div>
-				<div class="alpha-content">
-					<div class="alpha__info">Important information </div>
-			</div>
-			</div>
-		</section>
-		<main class="products-list _container">
-			<div class="product">
-			</div>
+			</section>
+
+			<section class="categories-section _container">
+				<h2 class="section-title">Shop by Category</h2>
+				<div class="categories-grid">
+					<div class="category-card">
+						<img src="/img/category1.jpg" alt="Category 1">
+						<h3>Category 1</h3>
+					</div>
+					<div class="category-card">
+						<img src="/img/category2.jpg" alt="Category 2">
+						<h3>Category 2</h3>
+					</div>
+					<div class="category-card">
+						<img src="/img/category3.jpg" alt="Category 3">
+						<h3>Category 3</h3>
+					</div>
+				</div>
+			</section>
+
+			<section class="products-section _container">
+				<h2 class="section-title">Featured Products</h2>
+				<div class="products-grid">
+					<!-- Product cards will be dynamically added here -->
+				</div>
+			</section>
+
+			<section class="pagination _container">
+				<div class="pagination__list">
+					<button class="prev-button">Previous</button>
+					<div class="pagination-buttons"></div>
+					<div class="current-page">Page: <span id="currentPage">1</span></div>
+					<button class="next-button">Next</button>
+				</div>
+			</section>
 		</main>
-		<section class="pagination _container">
-			<div class="pagination__list">
-			  <button class="prev-button">-</button>
-			  <div class="pagination-buttons">
-			  </div>
-			  <div class="current-page">Page: <span id="currentPage">1</span></div>
-			  <button class="next-button">+</button>
-			</div>
-		  </section>	  
+
 		<footer class="footer">
 			<div class="footer__top">
 				<div class="footer__main _container">
 					<div class="footer__row">
 						<div class="footer__column">
-							<div class="footer__menu menu-footer">
-								<img src="/img/Logomark.png" alt="" />
+							<div class="footer__brand">
+								<img src="/img/Logomark.png" alt="VooDoo Shop" />
+								<p>Your trusted online shopping destination</p>
 							</div>
 						</div>
 						<div class="footer__column">
 							<nav class="footer__menu menu-footer">
+								<h3>Customer Service</h3>
 								<ul class="menu-footer__list">
-									<li class="menu-footer__item"><a href="" class="menu-footer__link">FAQ</a></li>
-									<li class="menu-footer__item"><a href="" class="menu-footer__link">RETURNS</a></li>
-									<li class="menu-footer__item"><a href="" class="menu-footer__link">CONTACT</a></li>
+									<li><a href="#">FAQ</a></li>
+									<li><a href="#">Returns & Exchanges</a></li>
+									<li><a href="#">Contact Us</a></li>
+									<li><a href="#">Shipping Information</a></li>
 								</ul>
 							</nav>
 						</div>
 						<div class="footer__column">
 							<nav class="footer__menu menu-footer">
+								<h3>Legal</h3>
 								<ul class="menu-footer__list">
-									<li class="menu-footer__item"><a href="" class="menu-footer__link">TERMS &
-											CONDITIONS</a></li>
-									<li class="menu-footer__item"><a href="" class="menu-footer__link">PRIVACY
-											POLICY</a></li>
-									<li class="menu-footer__item"><a href="" class="menu-footer__link">COOKIE POLICY</a>
-									</li>
-									<li class="menu-footer__item"><a href="" class="menu-footer__link">COOKIE
-											SETTINGS</a></li>
+									<li><a href="#">Terms & Conditions</a></li>
+									<li><a href="#">Privacy Policy</a></li>
+									<li><a href="#">Cookie Policy</a></li>
+									<li><a href="#">Cookie Settings</a></li>
 								</ul>
 							</nav>
 						</div>
 						<div class="footer__column">
 							<nav class="footer__menu menu-footer">
+								<h3>About Us</h3>
 								<ul class="menu-footer__list">
-									<li class="menu-footer__item"><a href="" class="menu-footer__link">ABOUT SECOND
-											CHANCE</a></li>
-									<li class="menu-footer__item"><a href="" class="menu-footer__link">CAREERS</a></li>
-									<li class="menu-footer__item"><a href="" class="menu-footer__link">FACEBOOK</a></li>
-									<li class="menu-footer__item"><a href="" class="menu-footer__link">INSTAGRAM</a>
-									</li>
+									<li><a href="#">Our Story</a></li>
+									<li><a href="#">Careers</a></li>
+									<li><a href="#">Blog</a></li>
+									<li><a href="#">Social Media</a></li>
 								</ul>
 							</nav>
 						</div>
 					</div>
 				</div>
 			</div>
+			<div class="footer__bottom">
+				<div class="_container">
+					<p>&copy; 2024 VooDoo Shop. All rights reserved.</p>
+				</div>
+			</div>
 		</footer>
-		
-		</div>
+	</div>
 	<script src="js/script.js"></script>
 </body>
 
