@@ -6,8 +6,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="https://fonts.googleapis.com/css?family=Space+Grotesk:300,regular,500,600,700" rel="stylesheet" />
 	<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="compiled.css">
-	<link rel="stylesheet" href="css/cart.css">
+	<link rel="stylesheet" href="compiled.css?v=3.0">
+	<link rel="stylesheet" href="css/cart.css?v=3.0">
 	<title>VooDoo Shop</title>
 </head>
 
@@ -29,7 +29,9 @@
 						<div class="search-box">
 							<input type="text" placeholder="Search products..." class="search-input">
 							<button class="search-button">
-								<img src="/img/search.png" alt="Search" />
+								<svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M21 21L16.514 16.506L21 21ZM19 10.5C19 15.194 15.194 19 10.5 19C5.806 19 2 15.194 2 10.5C2 5.806 5.806 2 10.5 2C15.194 2 19 5.806 19 10.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
 							</button>
 						</div>
 						<div class="cart">
@@ -54,7 +56,15 @@
 				</ul>
 				<div class="cart-summary">
 					<p class="total-cart-price">TOTAL: $0.00</p>
-					<button class="checkout-button">Proceed to Checkout</button>
+					<div class="cart-actions">
+						<button class="export-cart-btn" onclick="exportCart()">Export Cart</button>
+						<label class="import-cart-btn">
+							Import Cart
+							<input type="file" accept=".json" onchange="importCart(this.files[0])" style="display: none;">
+						</label>
+						<button class="clear-cart-btn" onclick="clearCart()">Clear Cart</button>
+						<button class="checkout-button">Proceed to Checkout</button>
+					</div>
 				</div>
 			</div>
 			<a class="close-button">×</a>
@@ -122,7 +132,7 @@
 				<div class="hero-content">
 					<h1>Welcome to VooDoo Shop</h1>
 					<p>Discover our latest collection</p>
-					<button class="shop-now-button">Shop Now</button>
+					<button class="shop-now-button" onclick="scrollToProducts()">Shop Now</button>
 				</div>
 			</section>
 
@@ -130,16 +140,20 @@
 				<h2 class="section-title">Shop by Category</h2>
 				<div class="categories-grid">
 					<div class="category-card">
-						<img src="/img/category1.jpg" alt="Category 1">
-						<h3>Category 1</h3>
+						<img src="https://via.placeholder.com/400x300?text=Electronics" alt="Electronics">
+						<h3>Electronics</h3>
 					</div>
 					<div class="category-card">
-						<img src="/img/category2.jpg" alt="Category 2">
-						<h3>Category 2</h3>
+						<img src="https://via.placeholder.com/400x300?text=Furniture" alt="Furniture">
+						<h3>Furniture</h3>
 					</div>
 					<div class="category-card">
-						<img src="/img/category3.jpg" alt="Category 3">
-						<h3>Category 3</h3>
+						<img src="https://via.placeholder.com/400x300?text=Lighting" alt="Lighting">
+						<h3>Lighting</h3>
+					</div>
+					<div class="category-card">
+						<img src="https://via.placeholder.com/400x300?text=Accessories" alt="Accessories">
+						<h3>Accessories</h3>
 					</div>
 				</div>
 			</section>
@@ -214,7 +228,7 @@
 			</div>
 		</footer>
 	</div>
-	<script src="js/script.js"></script>
+	<script src="js/script.js?v=3.0"></script>
 </body>
 
 </html>
