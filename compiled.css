@@ -356,7 +356,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    color: white;
+    color: var(--text-color);
     margin-top: 80px;
 }
 
@@ -573,7 +573,7 @@ body {
 }
 
 .modal__title {
-    color: #fff;
+    color: var(--text-color);
     font-size: 2rem;
     margin-bottom: 2rem;
     text-align: center;
@@ -706,7 +706,7 @@ body {
     right: 1rem;
     background: none;
     border: none;
-    color: #fff;
+    color: var(--text-color);
     font-size: 2rem;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -1280,7 +1280,7 @@ body {
 }
 
 .category-filter-btn.active {
-    border-color: #fff;
+    border-color: var(--secondary-color);
     animation: pulse 2s infinite;
 }
 
@@ -1292,7 +1292,7 @@ body {
 }
 
 .category-card {
-    background: white;
+    background: var(--card-bg);
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
@@ -1338,7 +1338,7 @@ body {
     text-align: center;
     font-size: 1.3rem;
     font-weight: 700;
-    color: #333;
+    color: var(--text-color);
     margin: 0;
     position: relative;
 }
@@ -1391,7 +1391,7 @@ body {
     padding: 12px 20px;
     border: 2px solid #e9ecef;
     border-radius: 15px;
-    background: white;
+    background: var(--card-bg);
     cursor: pointer;
     font-size: 1rem;
     font-weight: 600;
@@ -1426,7 +1426,7 @@ body {
 }
 
 .product-card {
-    background: white;
+    background: var(--card-bg);
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -1459,7 +1459,7 @@ body {
     position: absolute;
     top: 15px;
     right: 15px;
-    background: white;
+    background: var(--card-bg);
     border: none;
     border-radius: 50%;
     width: 40px;
@@ -1538,7 +1538,7 @@ body {
     font-size: 1.2rem;
     font-weight: 600;
     margin-bottom: 10px;
-    color: #333;
+    color: var(--text-color);
 }
 
 .product-card__rating {
@@ -1590,7 +1590,7 @@ body {
 .product-card__price {
     font-size: 1.3rem;
     font-weight: 700;
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 8px;
 }
 
@@ -1746,7 +1746,7 @@ body {
 
 .current-page {
     padding: 12px 20px;
-    color: #667eea;
+    color: var(--text-color);
     font-weight: 700;
     background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
     border-radius: 12px;
@@ -1836,12 +1836,12 @@ body {
 .cart-item__name {
     font-weight: 700;
     margin-bottom: 8px;
-    color: #333;
+    color: var(--text-color);
     font-size: 1.1rem;
 }
 
 .cart-item__price {
-    color: #667eea;
+    color: var(--text-color);
     font-weight: 600;
     margin-bottom: 12px;
     font-size: 1.1rem;
@@ -1888,7 +1888,7 @@ body {
     min-width: 30px;
     text-align: center;
     font-size: 1.1rem;
-    color: #333;
+    color: var(--text-color);
 }
 
 .remove-button {
@@ -2023,11 +2023,11 @@ body {
 }
 
 .cart-total__items {
-    color: #667eea;
+    color: var(--text-color);
 }
 
 .cart-total__price {
-    color: #28a745;
+    color: var(--text-color);
     font-size: 1.3rem;
 }
 
