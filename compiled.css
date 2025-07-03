@@ -2262,3 +2262,43 @@ a:focus {
         color: #cccccc;
     }
 }
+
+.sale-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--color-neon, #00fff7);
+  color: #18181b;
+  font-weight: bold;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.95rem;
+  box-shadow: 0 0 8px var(--color-neon, #00fff7);
+  z-index: 2;
+  letter-spacing: 1px;
+}
+.old-price {
+  color: #ff4444;
+  text-decoration: line-through;
+  font-size: 1.1rem;
+  margin-right: 8px;
+  opacity: 0.7;
+}
+.sale-price {
+  color: var(--color-neon2, #39ff14);
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-shadow: 0 0 8px var(--color-neon2, #39ff14);
+}
+.sale-timer {
+  margin: 8px 0 0 0;
+  color: var(--color-neon3, #ff44cc);
+  font-size: 1rem;
+  font-weight: 600;
+  text-shadow: 0 0 8px var(--color-neon3, #ff44cc);
+  letter-spacing: 1px;
+}
+.sale-ended {
+  color: #ff4444 !important;
+  text-shadow: none;
+}

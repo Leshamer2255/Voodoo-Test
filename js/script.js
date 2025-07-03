@@ -31,6 +31,13 @@ const signupCloseButton = signupModal.querySelector('.close-button');
 const loginForm = document.querySelector('.login-form');
 const signupForm = document.querySelector('.signup-form');
 
+// Payment modal logic
+const paymentModal = document.getElementById('paymentModal');
+const paymentBtns = paymentModal.querySelectorAll('.payment-btn');
+const paymentStatus = paymentModal.querySelector('.payment-status');
+const paymentCloseBtns = paymentModal.querySelectorAll('.close-button');
+const checkoutButton = document.querySelector('.checkout-button');
+
 // Sample product data with more products
 const products = [
     {
@@ -42,7 +49,10 @@ const products = [
         description: "High-quality gaming headset with neon accents and 7.1 surround sound",
         rating: 4.5,
         reviews: 128,
-        inStock: true
+        inStock: true,
+        isOnSale: true,
+        salePrice: 99.99,
+        saleEnd: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString() // 2 години від зараз
     },
     {
         id: 2,
@@ -53,7 +63,8 @@ const products = [
         description: "RGB mechanical keyboard with neon backlight and customizable switches",
         rating: 4.8,
         reviews: 89,
-        inStock: true
+        inStock: true,
+        isOnSale: false
     },
     {
         id: 3,
@@ -251,7 +262,10 @@ const products = [
         description: "TV/monitor ambient light bar with music sync",
         rating: 4.7,
         reviews: 134,
-        inStock: true
+        inStock: true,
+        isOnSale: true,
+        salePrice: 89.99,
+        saleEnd: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString() // 24 години від зараз
     }
 ];
 
@@ -422,11 +436,20 @@ function displayProducts() {
     productsToShow.forEach(product => {
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
-        
         const isInWishlist = wishlist.includes(product.id);
         const stockStatus = product.inStock ? 'In Stock' : 'Out of Stock';
         const stockClass = product.inStock ? 'in-stock' : 'out-of-stock';
-        
+
+        // Sale badge, price, timer
+        let saleBadge = '';
+        let priceBlock = `<div class="product-card__price">$${product.price.toFixed(2)}</div>`;
+        let timerBlock = '';
+        if (product.isOnSale && product.salePrice && product.saleEnd) {
+            saleBadge = `<div class="sale-badge">SALE</div>`;
+            priceBlock = `<div class="product-card__price"><span class="old-price">$${product.price.toFixed(2)}</span> <span class="sale-price">$${product.salePrice.toFixed(2)}</span></div>`;
+            timerBlock = `<div class="sale-timer" data-saleend="${product.saleEnd}" data-productid="${product.id}"></div>`;
+        }
+
         productCard.innerHTML = `
             <div class="product-card__image">
                 <img src="${product.image}" alt="${product.name}">
@@ -438,6 +461,7 @@ function displayProducts() {
                 <div class="product-card__overlay">
                     <button class="quick-view-btn" data-id="${product.id}">Quick View</button>
                 </div>
+                ${saleBadge}
             </div>
             <div class="product-card__content">
                 <div class="product-card__category">${product.category}</div>
@@ -449,7 +473,8 @@ function displayProducts() {
                     <span class="reviews">(${product.reviews})</span>
                 </div>
                 <p class="product-card__description">${product.description}</p>
-                <div class="product-card__price">$${product.price.toFixed(2)}</div>
+                ${priceBlock}
+                ${timerBlock}
                 <div class="product-card__stock ${stockClass}">${stockStatus}</div>
                 <button class="add-to-cart" data-id="${product.id}" ${!product.inStock ? 'disabled' : ''}>
                     ${product.inStock ? 'Add to Cart' : 'Out of Stock'}
@@ -459,8 +484,36 @@ function displayProducts() {
         productsGrid.appendChild(productCard);
     });
 
+    // Таймер для акційних товарів
+    updateSaleTimers();
+
     // Add event listeners
     addProductEventListeners();
+}
+
+// Оновлення таймерів акцій
+function updateSaleTimers() {
+    const timers = document.querySelectorAll('.sale-timer');
+    timers.forEach(timer => {
+        const saleEnd = timer.getAttribute('data-saleend');
+        if (!saleEnd) return;
+        function update() {
+            const now = new Date();
+            const end = new Date(saleEnd);
+            let diff = Math.max(0, end - now);
+            if (diff <= 0) {
+                timer.textContent = 'Sale ended';
+                timer.classList.add('sale-ended');
+                return;
+            }
+            const h = String(Math.floor(diff / 3600000)).padStart(2, '0');
+            const m = String(Math.floor((diff % 3600000) / 60000)).padStart(2, '0');
+            const s = String(Math.floor((diff % 60000) / 1000)).padStart(2, '0');
+            timer.textContent = `Sale ends in: ${h}:${m}:${s}`;
+        }
+        update();
+        setInterval(update, 1000);
+    });
 }
 
 // Generate star rating HTML
@@ -956,7 +1009,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Add checkout button functionality
-    const checkoutButton = document.querySelector('.checkout-button');
     if (checkoutButton) {
         checkoutButton.addEventListener('click', () => {
             if (cart.length === 0) {
@@ -964,11 +1016,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            // Here you would typically redirect to checkout page
-            alert('Redirecting to checkout...');
-            console.log('Checkout with items:', cart);
+            paymentModal.style.display = 'flex';
+            paymentStatus.textContent = '';
         });
     }
+
+    // Payment modal logic
+    paymentBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            paymentStatus.textContent = 'Processing payment via ' + btn.textContent + '...';
+            paymentStatus.style.color = 'var(--color-neon, #00fff7)';
+            setTimeout(() => {
+                paymentStatus.textContent = 'Payment successful! Thank you for your purchase!';
+                paymentStatus.style.color = 'var(--color-neon2, #39ff14)';
+                clearCart();
+            }, 1800);
+        });
+    });
+
+    paymentCloseBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            paymentModal.style.display = 'none';
+        });
+    });
 
     // Save user preferences
     saveUserPreferences();
